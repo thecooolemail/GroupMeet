@@ -1,0 +1,43 @@
+
+
+.homeroot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.dayInner{
+    height: calc(100% - 5px);
+    width: calc(100% - 5px);
+    
+    border-radius: var(--borderradius);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+}
+
+.dayBox{
+    background-color: var(--accentcolor);
+    border-radius: var(--borderradius);
+    
+}
+.dayBox:hover{
+    background-color: var(--accenttranscolor);
+}
+
+.names{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
