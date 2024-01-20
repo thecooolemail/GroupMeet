@@ -13,6 +13,7 @@ export default function Home() {
   const [title, settitle] = useState()
   const [description, setdescription] = useState()
   const [month, setmonth] = useState(undefined)
+  const [monthName, setmonthName] = useState(undefined)
   const [canCreate, setcanCreate] = useState()
   const [loading, setloading] = useState(false)
 
@@ -58,7 +59,7 @@ export default function Home() {
       let link = uuidv4()
       setlink(link)
       let myId = userLocID()
-      let x = await createCal({linkID: link, month: month, auth: myId, title: title, des: description})
+      let x = await createCal({linkID: link, month: month, auth: myId, title: title, des: description, monthName: monthName})
       if(x === 1) {setloading(false); setbuttontext('Open Link')}
     }
   }
@@ -68,10 +69,10 @@ export default function Home() {
   return (
     <div className={styles.homeroot}>
       <h2>Welcome to GroupMeet</h2>
-      <p style={{marginTop: '5px'}}>Sechedule events with large groups</p>
+      <p style={{marginTop: '5px'}}>Schedule events for large groups</p>
       <input style={{marginTop: '15px'}} value={title} onChange={(x) => {if(!linkCreated)settitle(x.target.value)}} placeholder='Event Name'/>
       <input placeholder='Event Description' value={description} onChange={(x) => {if(!linkCreated)setdescription(x.target.value)}} />
-      <Dropdown placeholder={"Month"} allowCustomInput={false} InputChangeFunction={(x) => setmonth(x?.value)} Suggestions={months}/>
+      <Dropdown placeholder={"Month"} allowCustomInput={false} InputChangeFunction={(x) => {setmonth(x?.value) ; setmonthName(x?.name)}} Suggestions={months}/>
 
       <button onClick={() => Button()} style={canCreate ? {marginTop: '15px'} : {display: 'none'}} >{buttontext}</button>
     </div>
