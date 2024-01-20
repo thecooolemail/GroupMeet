@@ -48,7 +48,7 @@ export default function Home() {
   async function Button(){
     if(loading === false){
     if(linkCreated){
-      window.location.href = `http://localhost:3000/cal/${link}`;
+      window.location.href = `${process.env.NEXT_PUBLIC_URL}/cal/${link}`;
 
 
     }else {
@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <div className={styles.homeroot}>
-      <h1>Welcome to GroupMeet</h1>
+      <h2>Welcome to GroupMeet</h2>
       <p style={{marginTop: '5px'}}>Sechedule events with large groups</p>
       <input style={{marginTop: '15px'}} value={title} onChange={(x) => {if(!linkCreated)settitle(x.target.value)}} placeholder='Event Name'/>
       <input placeholder='Event Description' value={description} onChange={(x) => {if(!linkCreated)setdescription(x.target.value)}} />

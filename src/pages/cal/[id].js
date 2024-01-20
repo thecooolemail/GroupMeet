@@ -100,6 +100,10 @@ function toggleDate(x) {
     setcaldata(updatedArray);
 }
 
+function copyText(entryText){
+  console.log("Copying")
+  navigator.clipboard.writeText(entryText);
+}
 
   
 
@@ -108,16 +112,17 @@ function toggleDate(x) {
       <UserLockName retName={(x) => setname(x)} calName={data?.title} calLinkID={calId}/>
       
       <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <b onClick={() => window.location.href = 'http://localhost:3000/'}>GroupMeet</b>
+        <b onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_URL}`}>GroupMeet</b>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-          <button style={{padding: '7px 20px', marginLeft: '5px', marginRight: '5px'}}>Copy Link</button>
-          <button onClick={() =>   window.location.href = 'http://localhost:3000/'} style={{padding: '7px 20px', marginLeft: '5px', marginRight: '5px'}}>Create New</button>
+          <button onClick={() => copyText(`${process.env.NEXT_PUBLIC_URL}/cal/${calId}`)} style={{padding: '7px 20px', marginLeft: '5px', marginRight: '5px'}}>Copy Link</button>
+          <button onClick={() =>   window.location.href = `${process.env.NEXT_PUBLIC_URL}`} style={{padding: '7px 20px', marginLeft: '5px', marginRight: '5px'}}>Create New</button>
         </div>
       </div>
    
       <div style={{width: '90%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1 style={{minHeight: '130px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>{data?.title}</h1>
-      
+        
+        <h3 style={{alignSelf: 'flex-start', marginTop: '20px'}}>{data?.title}.</h3>
+        <small style={{alignSelf: 'flex-start', marginBottom: '20px'}}>{data?.description}.</small>
         <p style={{alignSelf: 'flex-start'}}>Hi  <b>{name}</b>, select all days your free.</p>
         <div style={{display: 'grid', width: '100%', height: '100%', marginTop: '10px', marginBottom: '10px', gridTemplateColumns: 'repeat(7, 1fr)', gridTemplateRows: 'repeat(6, 1fr)', backgroundColor: 'var(--accentcolor)', borderRadius: 'var(--borderradius)'}}>
           <b style={{gridColumn: '1', gridRow: '1',  textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Mon</b>
@@ -131,7 +136,7 @@ function toggleDate(x) {
         </div>
 
         {/*<p style={{alignSelf: 'flex-start'}}>Top Days</p>*/}
-        <div style={{width: '100%', backgroundColor: 'var(--accentcolor)', borderRadius: 'var(--borderradius)', padding: '10px 10px',  minHeight: '60px', display: 'flex',overflowY: 'hidden', flexDirection: 'row', justifyContent: 'flex-start ',gap: '10px',overflowX: 'scroll', alignItems: 'center', marginBottom: '10px'}}>
+        <div style={{width: '100%', backgroundColor: 'var(--accentcolor)', borderRadius: 'var(--borderradius)', padding: '14px 10px',  minHeight: '60px', display: 'flex',overflowY: 'hidden', flexDirection: 'row', justifyContent: 'flex-start ',gap: '10px',overflowX: 'scroll', alignItems: 'center', marginBottom: '10px'}}>
         {topdates?.map((x) => { 
           return(
             <div key={x.day} style={{display: 'flex', flexDirection: 'column', backgroundColor: 'white',padding: '5px 10px', borderRadius: 'var(--borderradius)'}}>
